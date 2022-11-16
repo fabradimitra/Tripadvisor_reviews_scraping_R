@@ -11,13 +11,11 @@ source("waitForElement.R")
 attraction_link <- "https://www.tripadvisor.com/Attraction_Review-g187147-d188757-Reviews-Louvre_Museum-Paris_Ile_de_France.html"
 
 # Creazione del driver
-driver <- rsDriver(browser=c("firefox"),port=2540L,version="3.141.59",  geckover ="0.29.0"
-                   # Aggiungere il seguente argomento per estrarre dati senza aprire visibilmente firefox
-                   #extraCapabilities = list(
-                    # "moz:firefoxOptions" = list(
-                     #  args = list('--headless')
-                    # ))
-                   )
+driver <- rsDriver(browser=c("firefox"),port=2540L,version="3.141.59",  geckover ="0.29.0",
+                   extraCapabilities = list(
+                     "moz:firefoxOptions" = list(
+                       args = list('--headless')
+                     )))
 remote_driver <- driver[["client"]]
 
 remote_driver$navigate(attraction_link)
