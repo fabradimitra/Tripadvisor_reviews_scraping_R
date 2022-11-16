@@ -11,11 +11,14 @@ source("waitForElement.R")
 attraction_link <- "https://www.tripadvisor.com/Attraction_Review-g187147-d188757-Reviews-Louvre_Museum-Paris_Ile_de_France.html"
 
 # Creazione del driver
-driver <- rsDriver(browser=c("firefox"),port=2540L,version="3.141.59",  geckover ="0.29.0",
-                   extraCapabilities = list(
-                     "moz:firefoxOptions" = list(
-                       args = list('--headless')
-                     )))
+driver <- rsDriver(browser=c("firefox"),port=2540L,version="3.141.59",  geckover ="0.29.0"
+                   # Aggiungere il seguente argomento per estrarre dati senza aprire visibilmente firefox
+                   # Aggiungere anche ai successivi rsDriver
+                   #extraCapabilities = list(
+                    # "moz:firefoxOptions" = list(
+                     #  args = list('--headless')
+                    # ))
+                   )
 remote_driver <- driver[["client"]]
 
 remote_driver$navigate(attraction_link)
@@ -98,11 +101,13 @@ for(i in 1:reviews_pages){
         try(remote_driver$close())
         try(driver$server$stop())
         try(system("taskkill /im java.exe /f", intern = FALSE, ignore.stdout=TRUE, ignore.stderr=TRUE))
-        driver <- rsDriver(browser=c("firefox"),port= 2540L, verbose = FALSE,version="3.141.59",  geckover ="0.29.0",
-                           extraCapabilities = list(
-                             "moz:firefoxOptions" = list(
-                               args = list('--headless')
-                             )))
+        driver <- rsDriver(browser=c("firefox"),port=2540L,version="3.141.59",  geckover ="0.29.0"
+                           # Aggiungere il seguente argomento per estrarre dati senza aprire visibilmente firefox
+                           #extraCapabilities = list(
+                           # "moz:firefoxOptions" = list(
+                           #  args = list('--headless')
+                           # ))
+        )
         remote_driver <- driver[["client"]]
         remote_driver$navigate(current_link)
         waitAndClick(driver = remote_driver, iter = 60, attributeLabel = "id", attributeValue = "onetrust-accept-btn-handler")
@@ -115,11 +120,13 @@ for(i in 1:reviews_pages){
         try(remote_driver$close())
         try(driver$server$stop())
         try(system("taskkill /im java.exe /f", intern = FALSE, ignore.stdout=TRUE, ignore.stderr=TRUE))
-        driver <- rsDriver(browser=c("firefox"),port= 2540L, verbose = FALSE,version="3.141.59",  geckover ="0.29.0",
-                           extraCapabilities = list(
-                             "moz:firefoxOptions" = list(
-                               args = list('--headless')
-                             )))
+        driver <- rsDriver(browser=c("firefox"),port=2540L,version="3.141.59",  geckover ="0.29.0"
+                           # Aggiungere il seguente argomento per estrarre dati senza aprire visibilmente firefox
+                           #extraCapabilities = list(
+                           # "moz:firefoxOptions" = list(
+                           #  args = list('--headless')
+                           # ))
+        )
         remote_driver <- driver[["client"]]
         remote_driver$navigate(current_link)
         waitAndClick(driver = remote_driver, iter = 60, attributeLabel = "id", attributeValue = "onetrust-accept-btn-handler")
@@ -134,11 +141,13 @@ for(i in 1:reviews_pages){
     try(remote_driver$close())
     try(driver$server$stop())
     try(system("taskkill /im java.exe /f", intern = FALSE, ignore.stdout=TRUE, ignore.stderr=TRUE))
-    driver <<- rsDriver(browser=c("firefox"),port= 2540L, verbose = FALSE,version="3.141.59",  geckover ="0.29.0",
-                        extraCapabilities = list(
-                          "moz:firefoxOptions" = list(
-                            args = list('--headless')
-                          )))
+    driver <- rsDriver(browser=c("firefox"),port=2540L,version="3.141.59",  geckover ="0.29.0"
+                       # Aggiungere il seguente argomento per estrarre dati senza aprire visibilmente firefox
+                       #extraCapabilities = list(
+                       # "moz:firefoxOptions" = list(
+                       #  args = list('--headless')
+                       # ))
+    )
     remote_driver <<- driver[["client"]]
     reviews_contents <<- c("No reviews")
     remote_driver$navigate(current_link)
